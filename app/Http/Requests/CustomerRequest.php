@@ -25,7 +25,7 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique:customers,name,' . request('id'),
             // 'email' => 'sometimes|nullable|email|unique:customers,email,' . request('id'),
             'mobile_no' => [
                 'required', 'unique:customers,mobile_no,' . request('id'),
