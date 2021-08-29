@@ -18,7 +18,8 @@ class Transaction_itemsResource extends JsonResource
         return [
             "id" => $this->id,
             "transaction_id" => $this->transaction_id,
-            "services" => Services::collection($this->service)
+            "service" => new ServicesResource($this->service),
+            "quantity"=>$this->quantity
         ];
     }
 }

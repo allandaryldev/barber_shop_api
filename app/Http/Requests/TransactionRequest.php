@@ -25,8 +25,11 @@ class TransactionRequest extends FormRequest
     {
         return [
             "customer_id"=>"required|exists:App\Models\Customers,id",
+            'total' => 'required|numeric',
             'items.*' => 'required|array',
             'items.*.service_id' => 'required|numeric|exists:App\Models\Services,id',
+            'items.*.quantity' => 'required|numeric',
+            "useReward"=> 'required',
         ];
     }
 }
