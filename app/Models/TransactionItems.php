@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction_items extends Model
+class TransactionItems extends Model
 {
     use HasFactory;
     protected $fillable  = [
-        "transaction_id",
+        // "transaction_id",
         "service_id",
+        "quantity",
     ];
 
     public function transaction()
     {
-        return $this->belongsTo(Transactions::class);
+        return $this->belongsTo(Transaction::class);
     }
     public function service()
     {

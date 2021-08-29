@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transactions extends Model
+class Transaction extends Model
 {
     use HasFactory;
     protected $fillable  = [
         "user_id",
         "customer_id",
+        "total"
     ];
 
     public function user()
@@ -23,6 +24,6 @@ class Transactions extends Model
     }
     public function items()
     {
-        return $this->hasMany(Transaction_items::class);
+        return $this->hasMany(TransactionItems::class);
     }
 }
