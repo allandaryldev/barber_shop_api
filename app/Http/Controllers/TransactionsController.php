@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Transactions;
+use App\Models\Transaction;
+use App\Models\Customers;
 use App\Http\Requests\TransactionRequest;
 use App\Http\Resources\TransactionsResource;
 use App\Filters\TransactionsFilter;
@@ -28,9 +29,16 @@ class TransactionsController extends Controller
      */
     public function store(TransactionRequest $request)
     {
-        $input = $request->validate();
+        $input = $request->validated();
+        $input['user_id'] = auth()->id();
+        $transaction = Transaction::create($input);
+        if($transaction->total >=1500){
 
-        $transaction = Transactions::create($input);
+            $user = Customers::find($transaction->customer->id); 
+            $user->points +=1;
+            $user->update(['points'=>$user->points]);
+            
+        }
         $items = collect($request->items);
 
         $items->each(function ($item) use ($transaction) {
@@ -46,7 +54,7 @@ class TransactionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Transactions $transaction)
+    public function show(Transaction $transaction)
     {
         return new TransactionsResource($transaction);
     }
@@ -58,10 +66,12 @@ class TransactionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TransactionRequest $request, Transactions $transaction)
+    public function update(TransactionRequest $request, Transaction $transaction)
     {
         $input = $request->validate();
         $transaction->update($input);
+
+        
 
         return new TransactionsResource($transaction);
     }
@@ -72,7 +82,7 @@ class TransactionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transactions $transaction)
+    public function destroy(Transaction $transaction)
     {
         $transaction->delete();
 
