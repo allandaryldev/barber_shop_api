@@ -29,6 +29,7 @@ Route::group([
             "users" => UsersController::class,
             "customers" => CustomersController::class,
             "services" => ServicesController::class,
+            "transactions" => TransactionsController::class,
         ]);
 
     });
