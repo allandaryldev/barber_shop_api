@@ -17,6 +17,7 @@ class CreateTransactionItemsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('transaction_id')->nullable();
             $table->unsignedBigInteger('service_id')->nullable();
+            $table->unsignedBigInteger('quantity')->nullable();
             $table->foreign('service_id')->references('id')->on('services')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade')->onDelete('set null');
 
