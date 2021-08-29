@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-use App\Models\Transactions;
+use App\Models\Transaction;
 use App\Filters\Interfaces\Filterable;
 
 class TransactionsFilter implements Filterable
@@ -11,12 +11,12 @@ class TransactionsFilter implements Filterable
   public function get()
   {
 
-    return Transactions::query()
-    ->when(request('transaction_id'), function ($query) {
-      $query->where('id', request('transaction_id'));
+    return Transaction::query()
+    ->when(request('id'), function ($query) {
+      $query->where('id', request('id'));
     })
-      ->when(request('customer'), function ($query) {
-        $query->whereHas('customers', function ($query) {
+      ->when(request('name'), function ($query) {
+        $query->whereHas('customer', function ($query) {
           $query->where('name', 'LIKE', "%" . request('name') . "%");
         });
       })
@@ -25,13 +25,13 @@ class TransactionsFilter implements Filterable
           $query->where('name', 'LIKE', "%" . request('user') . "%");
         });
       })
-      ->when(request('value'), function ($query) {
-        $query->where('value', 'LIKE', "%" . request('value') . "%");
+      ->when(request('total'), function ($query) {
+        $query->where('total', 'LIKE', "%" . request('total') . "%");
       })
       ->orderBy(
         request('order_by', 'id'), // column
         request('direction', 'desc') // direction
       )
-      ->paginate(request('size', 10));
+      ->paginate(request('rows', ''));
   }
 }
