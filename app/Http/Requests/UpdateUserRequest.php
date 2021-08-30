@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
             'lastname' => 'required',
             'email' => 'sometimes|nullable|email|unique:users,email,' . request('id'),
             'type' => 'required|in:admin,staff',
-            'status' => 'required|in:active,deativated',
+            'status' => 'required|in:active,deactivated',
         ];
     }
 }

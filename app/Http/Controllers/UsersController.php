@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UsersResource;
 use App\Filters\UsersFilter;
+use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     /**
@@ -31,6 +32,7 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $input = $request->validated();
+        $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
 
         return new UsersResource($user);

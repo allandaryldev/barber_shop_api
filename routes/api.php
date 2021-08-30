@@ -21,10 +21,12 @@ Route::group([
     'prefix' => 'v1'
 ], function () {
 
+    Route::post('/register', [App\Http\Controllers\UsersController::class, 'store']);
+
     Route::group([
         'middleware' => 'auth:sanctum',
     ], function () {
-        
+
         Route::apiResources([
             "users" => UsersController::class,
             "customers" => CustomersController::class,

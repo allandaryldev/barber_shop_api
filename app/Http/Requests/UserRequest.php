@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             'lastname' => 'required',
             'email' => 'sometimes|nullable|email|unique:users,email,' . request('id'),
             'type' => 'required|in:admin,staff',
-            'status' => 'required|in:active,deativated',
+            'status' => 'required|in:active,deactivated',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required|min:8',
         ];
