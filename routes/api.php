@@ -24,7 +24,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:sanctum',
     ], function () {
-
+        
         Route::apiResources([
             "users" => UsersController::class,
             "customers" => CustomersController::class,

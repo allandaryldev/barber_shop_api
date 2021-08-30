@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UsersResource;
-
+use App\Filters\UsersFilter;
 class UsersController extends Controller
 {
     /**
@@ -16,8 +17,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return true;
+        // return true;
         // return UsersResource::collection(User::all());
+        return USersResource::collection((new UsersFilter())->get());
     }
 
     /**
@@ -52,7 +54,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $input = $request->validated();
         $user->update($input);

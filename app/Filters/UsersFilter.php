@@ -2,21 +2,25 @@
 
 namespace App\Filters;
 
-use App\Models\Customers;
+use App\Models\User;
 use App\Filters\Interfaces\Filterable;
 
-class CustomersFilter implements Filterable
+class UsersFilter implements Filterable
 {
 
     public function get()
     {
 
-        return Customers::query()
+        return User::query()
         ->when(request('id'), function ($query) {
             $query->where('id', request('id'));
           })
+          ->when(request('username'), function ($query) {
+            $query->where('username', 'LIKE', "%" . request('username') . "%");
+        })
             ->when(request('name'), function ($query) {
-                $query->where('name', 'LIKE', "%" . request('name') . "%");
+                $query->where('firstname', 'LIKE', "%" . request('name') . "%")
+                ->orWhere('lastname', 'LIKE', "%" . request('name') . "%");
             })
             ->when(request('group'), function ($query) {
                 $query->where('group', request('group') );
