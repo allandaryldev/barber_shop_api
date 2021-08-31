@@ -12,7 +12,6 @@ class Customers extends Model
         'name',
         'mobile_no',
         'birth_date',
-        'email',
         'notes  ',
         'password',
         'points',

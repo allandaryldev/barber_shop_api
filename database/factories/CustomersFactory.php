@@ -6,7 +6,7 @@ use App\Models\Customers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class CustomerFactory extends Factory
+class CustomersFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -24,7 +24,10 @@ class CustomerFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
+            "points"=>0,
+            // "email"=>$this->faker->unique()->safeEmail,
+            "group"=>'regular'
         ];
     }
 }

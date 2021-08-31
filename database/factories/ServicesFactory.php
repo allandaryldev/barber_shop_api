@@ -23,9 +23,10 @@ class ServicesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word(),
+            'name' =>  $this->faker->jobTitle,
             'description' => $this->faker->paragraph(2),
-            'value'=>Str::random(5),
+            // 'value'=>Str::random(5),
+            "value" => random_int(100, 5000),
         ];
     }
 }
