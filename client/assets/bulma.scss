@@ -1,0 +1,135 @@
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+
+
+// yellow: "#ebe811",
+// darkblue: "#28003c",
+// primary: "#400189",
+// primarylight: "#6600cc",
+// primarylightest: "#7b24d5",
+// green: "#00d7b7",
+// blue: "#380693",
+// whitelight: "#f4f5fa",
+// gray: "#a2a2a2",
+// Set your colors
+$primary: #400189;
+$primary-light: #6600cc;
+$primary-dark: #28003c;
+$primary-invert: #fff;
+$twitter: #4099FF;
+$success : #00d7b7;
+$twitter-invert: findColorInvert($twitter);
+
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(("white": ($white,
+      $black,
+    ),
+    "black": ($black,
+      $white,
+    ),
+    "light": ($light,
+      $light-invert,
+    ),
+    "dark": ($dark,
+      $dark-invert,
+    ),
+    "primary": ($primary,
+      $primary-invert,
+      $primary-light,
+      $primary-dark,
+    ),
+    "link": ($link,
+      $link-invert,
+      $link-light,
+      $link-dark,
+    ),
+    "info": ($info,
+      $info-invert,
+      $info-light,
+      $info-dark,
+    ),
+    "success": ($success,
+      $success-invert,
+      $success-light,
+      $success-dark,
+    ),
+    "warning": ($warning,
+      $warning-invert,
+      $warning-light,
+      $warning-dark,
+    ),
+    "danger": ($danger,
+      $danger-invert,
+      $danger-light,
+      $danger-dark,
+    ),
+  ),
+  $custom-colors);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+
+.b-tabs .tab-content {
+  padding: 0 !important;
+}
+
+.p-menubar .p-submenu-list {
+  display: none;
+  position: absolute;
+  z-index: 999 !important;
+}
+
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+  background-color: #400189 !important;
+}
+
+.table-wrapper {
+  position: relative;
+
+  &.has-sticky-header {
+    height: 75vh;
+    overflow-y: auto;
+
+
+    thead {
+      background-color: #fff;
+    }
+
+    tr:first-child {
+      th {
+        position: -webkit-sticky;
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        height: 1em;
+        background: $table-background-color;
+      }
+    }
+
+    tr:nth-child(2) {
+      th {
+        position: -webkit-sticky;
+        position: sticky;
+        z-index: 1;
+        top: 2.5em;
+        background: $table-background-color;
+      }
+    }
+  }
+
+}
+
+
