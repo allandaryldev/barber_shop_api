@@ -241,6 +241,25 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ["vee-validate/dist/rules", "primevue"],
+    terser: {
+      // https://github.com/terser/terser#compress-options
+      terserOptions: {
+        compress: {
+          drop_console: true
+        }
+      }
+    },
+    postcss: {
+      plugins: {
+        tailwindcss: 'tailwind.config.js',
+        autoprefixer: {},
+        "postcss-custom-properties": false
+      }
+    },
+    babel: {
+      compact: true,
+     },
   },
   hooks: {
     generate: {
